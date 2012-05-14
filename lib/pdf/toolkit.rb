@@ -1,5 +1,6 @@
 require 'tempfile'
 require 'forwardable'
+require 'rbconfig'
 
 # Certain existing libraries have a PDF class; no sense in being unnecessarily
 # incompatible.

@@ -42,9 +42,6 @@ end unless defined? PDF
 #
 # +pdftk+ requires the owner password, even for simply querying the document.
 class PDF::Toolkit
-  @@config = {}
-  #cattr_accessor :config
-  
   extend Forwardable
 
   VERSION = "1.0.0.rc1"
@@ -98,14 +95,6 @@ class PDF::Toolkit
     @user_password  = default_user_password
     @permissions    = default_permissions || []
     @new_info       = {}
-
-    @pdftk_exe_path ||= Toolkit.config[:pdftk_exe_path] unless Toolkit.config.empty?
-    @pdftk_exe_path ||= (defined?(Bundler) ? `bundle exec which pdftk` : `which pdftk`).chomp
-    raise "Location of pdftk unknown" if @pdftk_exe_path.empty?
-    
-    @pdftotext_exe_path ||= Toolkit.config[:pdftotext_exe_path] unless Toolkit.config.empty?
-    @pdftotext_exe_path ||= (defined?(Bundler) ? `bundle exec which pdftotext` : `which pdftotext`).chomp
-    raise "Location of pdftotext unknown" if @pdftotext_exe_path.empty?
     
     run_callbacks_for(:after_initialize)
   end

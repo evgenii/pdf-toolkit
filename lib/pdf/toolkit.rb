@@ -43,7 +43,7 @@ end unless defined? PDF
 # +pdftk+ requires the owner password, even for simply querying the document.
 class PDF::Toolkit
   @@config = {}
-  cattr_accessor :config
+  #cattr_accessor :config
   
   extend Forwardable
 
